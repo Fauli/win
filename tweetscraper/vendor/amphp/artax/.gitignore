@@ -1,0 +1,3 @@
+test/coverage
+vendor/autoload.php
+certs/.cacert-etag

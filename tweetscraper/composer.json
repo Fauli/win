@@ -1,7 +1,9 @@
 {
     "name": "tweetscraper",
     "require": {
-        "php": ">=5.5.0"
+        "php": ">=5.5.0",
+        "amphp/artax": "0.7",
+        "filp/whoops": "1.1.*"
     },
     "autoload": {
         "psr-4": {

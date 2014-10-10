@@ -34,7 +34,8 @@ function getData($mysqli, $dataset){
 
   try {
     $stmt = $mysqli->prepare($query)
-    $res = $stmt->execute($stmt);
+    $stmt->execute();
+    $res = $stmt->get_result();
   } catch (mysqli_sql_exception $e){
     echo $e->errorMessage();
   }

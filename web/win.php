@@ -29,20 +29,21 @@ function getData($mysqli, $dataset){
   $table = array("google_raw" => "google_raw",
                  "twitter_raw" => "twitter_raw");
 
+  print $dataset;
   $query = " SELECT * FROM ".$table[$dataset].
-           "";
+           " WHERE value > ?";
 
   try {
     $stmt = $mysqli->prepare($query)
+    $stmt->bind_param("i", 1);
     $stmt->execute();
   } catch (mysqli_sql_exception $e){
     echo $e->errorMessage();
   }
 
   $res = $stmt->get_result();
-  while($row = $res->fetch_row()){
-    print_r $row;
-  }
+  $out = $res->fetch_assoc();
+  print_r $out;
 
 }
 

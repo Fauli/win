@@ -10,6 +10,10 @@
 
 $mysqli = mysqli_connect("localhost", "root", "#YOLOswag1337", "win");
 
+$dataset = "google_raw";
+
+getData($mysqli, $dataset);
+
 // load template and end of main logic
 include "index.html";
 exit;
@@ -26,16 +30,18 @@ function getData($mysqli, $dataset){
                  "twitter_raw" => "twitter_raw");
 
   $query = " SELECT * FROM ".$table[$dataset].
-           " WHERE this = ?
-           ";
+           "";
 
   try {
     $stmt = $mysqli->prepare($query)
-    $mysqli->execute($stmt);
+    $res = $stmt->execute($stmt);
   } catch (mysqli_sql_exception $e){
     echo $e->errorMessage();
   }
 
+  while($row = $res->fetch_row_assoc()){
+    print_r $row;
+  }
 
 }
 

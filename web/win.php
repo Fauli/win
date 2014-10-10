@@ -39,7 +39,8 @@ function getData($mysqli, $dataset){
     echo $e->errorMessage();
   }
 
-  while($row = $res->fetch_row_assoc()){
+  $res = $stmt->get_result();
+  while($row = $res->fetch_row()){
     print_r $row;
   }
 

@@ -3,7 +3,7 @@ win
 
 Words in Numbers, Multi Source Analytics
 
-
+=======
 # Tips & Tricks
 ## Ablauf
 Man sollte versuchen Hypothesen vorher aufzustellen (und ggf. Parameter mit dem ersten 2/3 der Daten optimieren) und dann das letzte Drittel verwenden, um zu gucken, ob das denn tatsaechlich stimmt.
@@ -29,3 +29,5 @@ make a huge difference of course.
 - also look at performance NEXT day (see previous point - as it will depend hugely on exactly when the news
 was released)
 - if possible, use all S&P500 stocks and not just 12.
+
+test

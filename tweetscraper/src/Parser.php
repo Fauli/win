@@ -19,7 +19,10 @@ class Parser
         }
 
         foreach ($data->response->list as $item) {
-            $parsed[] = $item->content;
+            $parsed[] = [
+                'timestamp' => $item->firstpost_date,
+                'value' => $item->content,
+            ];
         }
 
         return $parsed;

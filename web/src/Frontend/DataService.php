@@ -28,7 +28,7 @@ class DataService
 
         $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
             FROM ' . $dbname . '
-            GROUP BY YEAR( Date ) , MONTH( Date ), DAY( Date )
+            GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
             ORDER BY Date DESC';
 
         $query = $this->pdo->prepare($sql);
@@ -38,7 +38,7 @@ class DataService
 
         $out = [];
         foreach ($rows as $row) {
-            $out[] = [$row['date'], $row['value']];
+            $out[] = [$row['date'] * 1000, $row['value']];
         }
         return $out;
     }

@@ -50,7 +50,7 @@ function loadNotifications(){
         //alert('notifications');
         $('#notificationBody').empty();
 
-        $.getJSON("http://151.236.222.251/notifications/getJsonData", function( data ) {
+        $.getJSON("/notifications/getJsonData", function( data ) {
                 var items = [];
                 $.each( data, function( key, val ) {
                         //items.push( "<li id='" + key + "'>" + val + "</li>" );

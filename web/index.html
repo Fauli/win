@@ -139,9 +139,9 @@ ATTENTION FOLKS, I CHANGED THE #page-wapper CSS value from 0px 0px 0px 250px for
             </div>
 		<div class="col-lg-8">
    From:
-<input id="fromDatePicker" data-provide="datepicker" ype="text" value="12-02-2012">
+<input id="fromDatePicker" data-provide="datepicker" ype="text"  data-date-format="yyyy-mm-dd" value="2012-01-01">
    To:
-<input id="toDatePicker" data-provide="datepicker" ype="text" value="31-12-2014"><br />
+<input id="toDatePicker" data-provide="datepicker" ype="text"  data-date-format="yyyy-mm-dd" value="2014-12-31"><br />
 Source:
 <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="setDropdown" data-toggle="dropdown">
@@ -149,11 +149,11 @@ Source:
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" value="bitcoin" href="#">Bitcoin</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" value="google" href="#">Google</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" value="twitter" href="#">Twitter</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="bitcoinSetItem" href="#">Bitcoin</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="googleSetItem" href="#">Google</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="twitterSetItem" href="#">Twitter</a></li>
     <li role="presentation" class="divider"></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" value="all" href="#">All</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="allSetItem" href="#">All</a></li>
   </ul>
 </div>
 		</div>

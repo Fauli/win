@@ -3,13 +3,13 @@
 // The chart GUI logic, needs adaption when new Sources come to play
 $('#toDatePicker').datepicker()
     .on('changeDate', function(ev){
-        alert(ev.date.valueOf());
+        //alert(ev.date.valueOf());
 	makeMorrisArea($('#selectedSet').val(),$('#fromDatePicker').val(),$('#toDatePicker').val());
 });
 
 $('#fromDatePicker').datepicker()
     .on('changeDate', function(ev){
-        alert(ev.date.valueOf());
+        //alert(ev.date.valueOf());
 	makeMorrisArea($('#selectedSet').val();,$('#fromDatePicker').val(),$('#toDatePicker').val());
 	//alert($('#selectedSet').val()+","+$('#fromDatePicker').val()+","+$('#toDatePicker').val());
 });

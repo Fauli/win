@@ -4,7 +4,7 @@ return [
         'Web\Frontend\HtmlPresenter',
         'showHomepage',
     ]],
-    ['GET', '/charts/getJsonData/{name}', [
+    ['GET', '/charts/getJsonData/{name}/{from}/{to}', [
         'Web\Frontend\JsonPresenter',
         'showChartData',
     ]],

@@ -1,4 +1,29 @@
 $(function() {
+    redrawMainChart();
+
+    $('#toDatePicker').datepicker().on('changeDate', function(ev){
+        redrawMainChart();
+    });
+
+    $('#fromDatePicker').datepicker().on('changeDate', function(ev){
+        redrawMainChart();
+    });
+});
+
+function ajax1() {
+    return $.getJSON("/charts/getJsonData/bitcoin/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+}
+
+function ajax2() {
+    return $.getJSON("/charts/getJsonData/twitter/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+}
+
+function ajax3() {
+    return $.getJSON("/charts/getJsonData/google/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+}
+
+function redrawMainChart()
+{
     $.when(ajax1(), ajax2(), ajax3()).done(function(bitcoin, twitter, google){
 
         var datasets = {
@@ -22,14 +47,15 @@ $(function() {
             ++i;
         });
 
-        // insert checkboxes 
         var choiceContainer = $("#choices");
-        $.each(datasets, function(key, val) {
-            choiceContainer.append("<br/><input type='checkbox' name='" + key +
-                    "' checked='checked' id='id" + key + "'></input>" +
-                    "<label for='id" + key + "'>"
-                    + val.label + "</label>");
-        });
+        if (!choiceContainer.html()) {
+            $.each(datasets, function(key, val) {
+                choiceContainer.append("<br/><input type='checkbox' name='" + key +
+                        "' checked='checked' id='id" + key + "'></input>" +
+                        "<label for='id" + key + "'>"
+                        + val.label + "</label>");
+            });
+        }
 
         choiceContainer.find("input").click(plotAccordingToChoices);
 
@@ -46,9 +72,9 @@ $(function() {
 
             if (data.length > 0) {
                 $.plot("#chart", data, {
-                    yaxis: {
-                        min: 0
-                    },
+                    yaxes: [
+                        {min: 0}, {min: 0},{min: 0}
+                    ],
                     xaxis: {
                         tickDecimals: 0,
                         mode: "time",
@@ -60,16 +86,4 @@ $(function() {
 
         plotAccordingToChoices();
     });
-});
-
-function ajax1() {
-    return $.getJSON("/charts/getJsonData/bitcoin");
-}
-
-function ajax2() {
-    return $.getJSON("/charts/getJsonData/twitter");
-}
-
-function ajax3() {
-    return $.getJSON("/charts/getJsonData/google");
 }

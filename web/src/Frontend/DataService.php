@@ -18,7 +18,7 @@ class DataService
         $this->pdo = $pdo;
     }
 
-    public function fetchForName($name)
+    public function fetchForName($name, $from, $to)
     {
         if (!array_key_exists($name, $this->map)) {
             throw new InvalidNameException;
@@ -28,11 +28,12 @@ class DataService
 
         $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
             FROM ' . $dbname . '
+            WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
             GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
             ORDER BY Date DESC';
 
         $query = $this->pdo->prepare($sql);
-        $query->execute();
+        $query->execute([':from' => $from, ':to' => $to]);
 
         $rows = $query->fetchAll(PDO::FETCH_ASSOC);
 

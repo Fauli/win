@@ -34,7 +34,7 @@ class DataService
         $query = $this->pdo->prepare($sql);
         $query->execute();
 
-        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $data;
     }

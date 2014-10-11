@@ -11,7 +11,7 @@ class Scraper
     private $client;
     private $amount = 100;
     private $maxTries = 5;
-    private $sleepInSeconds = 5;
+    private $sleepInSeconds = 2;
     private $url = 'http://otter.topsy.com/search.js';
 
     public function __construct(Client $client)

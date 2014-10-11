@@ -5,7 +5,7 @@ namespace Web\Frontend;
 use Http\Response;
 use Twig_Environment;
 
-class Presenter
+class HtmlPresenter
 {
     private $response;
     private $twig;

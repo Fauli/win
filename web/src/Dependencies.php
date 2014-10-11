@@ -19,4 +19,19 @@ $injector->delegate('Twig_Environment', function() use ($injector) {
     return new Twig_Environment($loader);
 });
 
+$injector->share('PDO');
+$injector->delegate('PDO', function() {
+    $db = json_decode(file_get_contents('../../db.json'));
+
+    $host = $db->host;
+    $dbname = $db->dbname;
+    $user = $db->user;
+    $password = $db->password;
+
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $pdo;
+});
+
+
 return $injector;

@@ -1,0 +1,16 @@
+{
+    "name": "web",
+    "require": {
+        "php": ">=5.5.0",
+        "patricklouys/http": "1.*",
+        "filp/whoops": "1.1.*",
+        "nikic/fast-route": "0.2.*",
+        "rdlowrey/auryn": "0.14.*",
+        "twig/twig": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Web\\": "src/"
+        }
+    }
+}

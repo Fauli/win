@@ -27,7 +27,7 @@ $scraper = new TweetScraper\Scraper($client);
 $parser = new TweetScraper\Parser;
 $persister = new TweetScraper\Persister($pdo);
 
-$from = new DateTime('2014-07-01');
+$from = new DateTime('2014-07-02');
 $to = new DateTime('2014-10-10');
 
 $dateRangeScraper = new TweetScraper\DateRangeScraper($scraper, $parser, $persister);

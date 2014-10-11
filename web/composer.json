@@ -1,0 +1,12 @@
+{
+    "name": "web",
+    "require": {
+        "php": ">=5.5.0",
+        "filp/whoops": "1.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Web\\": "src/"
+        }
+    }
+}

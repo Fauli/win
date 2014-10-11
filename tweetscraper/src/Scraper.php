@@ -65,6 +65,7 @@ class Scraper
             'apikey' => '09C43A9B270A470B8EB8F2946A9369F3',
             'mintime' => $from,
             'maxtime' => $to,
+            'allow_lang' => 'en',
         ];
 
         $request = new Request;
@@ -80,7 +81,8 @@ class Scraper
         $tryCounter = 0;
         while ($tryCounter < $this->maxTries) {
             try {
-                $response = $this->client->request($request);
+                $client = new Client;
+                $response = $client->request($request);
                 return $response;
             } catch (\Exception $e) {
                 $tryCounter++;

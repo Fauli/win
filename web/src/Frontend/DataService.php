@@ -26,7 +26,7 @@ class DataService
 
         $dbname = $this->map[$name];
 
-        $sql = 'SELECT CONCAT_WS("-", YEAR( Date ) , MONTH( Date ), DAY(Date)) as date , SUM( VALUE ) as value
+        $sql = 'SELECT unix_timestamp(Date) as date , SUM( VALUE ) as value
             FROM ' . $dbname . '
             GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
             ORDER BY YEAR( Date ) DESC';
@@ -34,9 +34,7 @@ class DataService
         $query = $this->pdo->prepare($sql);
         $query->execute();
 
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data;
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

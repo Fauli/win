@@ -15,35 +15,31 @@ $(function() {
     });
 
     jQuery("#bitcoinSetItem").click(function(e){
-    //do something
-    e.preventDefault();
+        e.preventDefault();
 
-    //alert("makeMorris(bitcoin,"+$('#fromDatePicker').val()+","+$('#toDatePicker').val()+")");
-    makeMorrisArea("bitcoin",$('#fromDatePicker').val(),$('#toDatePicker').val());
-    $('#selectedSet').val("bitcoin");
+        //alert("makeMorris(bitcoin,"+$('#fromDatePicker').val()+","+$('#toDatePicker').val()+")");
+        makeMorrisArea("bitcoin",$('#fromDatePicker').val(),$('#toDatePicker').val());
+        $('#selectedSet').val("bitcoin");
     });
 
     jQuery("#googleSetItem").click(function(e){
-    //do something
-    e.preventDefault();
-    //alert('google');
-    makeMorrisArea("google",$('#fromDatePicker').val(),$('#toDatePicker').val());
-    $('#selectedSet').val("google");
+        e.preventDefault();
+        //alert('google');
+        makeMorrisArea("google",$('#fromDatePicker').val(),$('#toDatePicker').val());
+        $('#selectedSet').val("google");
     });
 
     jQuery("#twitterSetItem").click(function(e){
-    //do something
-    e.preventDefault();
-    //alert('twitter');
-    makeMorrisArea("twitter",$('#fromDatePicker').val(),$('#toDatePicker').val());
-    $('#selectedSet').val("twitter");
+        e.preventDefault();
+        //alert('twitter');
+        makeMorrisArea("twitter",$('#fromDatePicker').val(),$('#toDatePicker').val());
+        $('#selectedSet').val("twitter");
     });
 
     jQuery("#allSetItem").click(function(e){
-    //do something
-    e.preventDefault();
-    alert('all');
-    $('#selectedSet').val("all");
+        e.preventDefault();
+        alert('all');
+        $('#selectedSet').val("all");
     });
 
 });

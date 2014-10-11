@@ -1,5 +1,7 @@
 <?php
 
+set_time_limit(0);
+
 require_once 'vendor/autoload.php';
 
 $woops = new \Whoops\Run;
@@ -30,5 +32,5 @@ $to = new DateTime('2014-10-10');
 
 $dateRangeScraper = new TweetScraper\DateRangeScraper($scraper, $parser, $persister);
 $dateRangeScraper->setSleepInSeconds(30);
-$dateRangeScraper->setAmount(1000);
+$dateRangeScraper->setAmount(500);
 $dateRangeScraper->scrape($from, $to);

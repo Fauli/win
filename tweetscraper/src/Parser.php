@@ -18,6 +18,8 @@ class Parser
             throw new MissingDataParserException('data format incorrect');
         }
 
+        echo count($data->response->list);die;
+
         foreach ($data->response->list as $item) {
             $parsed[] = [
                 'timestamp' => $item->firstpost_date,

@@ -9,7 +9,7 @@ use DateTime;
 class Scraper
 {
     private $client;
-    private $amount = 50;
+    private $amount = 100;
     private $tries = 5;
     private $url = 'http://otter.topsy.com/search.js';
 
@@ -20,12 +20,15 @@ class Scraper
 
     public function setAmount($amount)
     {
-        $this->amount = (integer) $amount;
+        if ((int) $amount > 1000) {
+            throw new InvalidAmountScraperException('Amount must be <= 1000');
+        }
+        $this->amount = (int) $amount;
     }
 
     public function setTries($tries)
     {
-        $this->tries = (integer) $tries;
+        $this->tries = (int) $tries;
     }
 
     public function scrape(DateTime $date)
@@ -63,3 +66,4 @@ class Scraper
 
 class ScraperException extends \Exception {}
 class ClientScraperException extends ScraperException {}
+class InvalidAmountScraperException extends ScraperException {}

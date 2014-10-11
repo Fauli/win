@@ -72,14 +72,15 @@ function redrawMainChart()
 
             if (data.length > 0) {
                 $.plot("#chart", data, {
-                    yaxes: [
-                        {min: 0}, {min: 0},{min: 0}
-                    ],
-                    xaxis: {
-                        tickDecimals: 0,
+                    xaxes: [{
                         mode: "time",
                         timeformat: "%d.%b.%y"
-                    }
+                    }],
+                    yaxes: [
+                        {position: "left", min: 0, max: 1300}, 
+                        {position: "right", min: -1, max:1}, 
+                        {position: "right", min: 0, max:100}
+                    ]
                 });
             }
         }

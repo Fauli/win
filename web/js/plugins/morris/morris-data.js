@@ -1,7 +1,7 @@
 $(function() {
   makeMorrisArea("google");
 });
-
+ 
 function makeMorrisArea(set, from, to){
   $('#morris-area-chart').empty();
   if(typeof(set) == "undefined"){ return; }

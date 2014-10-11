@@ -22,7 +22,8 @@ getData($mysqli, $dataset);
 function getData($mysqli, $dataset, $from, $to){
 
   $table = array("google" => "google_raw",
-                 "twitter" => "twitter_raw");
+                 "twitter" => "twitter_raw",
+                 "bitcoin" => "bitcoin_history");
 
   $query = " SELECT * FROM ".$table[$dataset]
            " WHERE Date > ? AND Date < ?";

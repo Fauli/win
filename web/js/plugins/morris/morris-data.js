@@ -3,6 +3,7 @@ $(function() {
 });
 
 function makeMorrisArea(set, from, to){
+  $('#morris-area-chart').html("");
   if(typeof(set) == "undefined"){ return; }
   if(typeof(from) == "undefined"){ from = "2000-01-01"; }
   if(typeof(to) == "undefined"){ to = "2099-01-01"; }

@@ -15,7 +15,7 @@ class NotificationService
 
     public function getNotifications()
     {
-        $sql = 'SELECT Date, Message, glyph as Glyph FROM win.notifications limit 10';
+        $sql = 'SELECT Date, Message, glyph as Glyph FROM win.notifications ORDER by Date DESC limit 10'; 
 
         $query = $this->pdo->prepare($sql);
         $query->execute();

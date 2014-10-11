@@ -3,12 +3,13 @@ $(function() {
 });
 
 function makeMorrisArea(set, from, to){
-  $('#morris-area-chart').html("");
+  $('#morris-area-chart').empty();
   if(typeof(set) == "undefined"){ return; }
   if(typeof(from) == "undefined"){ from = "2000-01-01"; }
   if(typeof(to) == "undefined"){ to = "2099-01-01"; }
 
-  $.getJSON("http://151.236.222.251/win/web/getdata.php?set=google"
+  $.getJSON("http://151.236.222.251/win/web/getdata.php?set="
+             +(typeof(set) != "undefined" ? set : "bitcoin")
              +(typeof(from) != "undefined" ? "&from="+from : "")
              +(typeof(to) != "undefined" ? "&to="+to : ""), 
              function(jsonData){

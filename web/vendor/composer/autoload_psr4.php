@@ -7,4 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Web\\' => array($baseDir . '/src'),
+    'Http\\' => array($vendorDir . '/patricklouys/http/src'),
+    'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
+    'Auryn\\' => array($vendorDir . '/rdlowrey/auryn/lib'),
 );

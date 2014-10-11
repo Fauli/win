@@ -4,21 +4,33 @@
  * Class to give morris chart the data it wants
  */
 
-$mysqli = mysqli_connect('151.236.222.251', 'yolo', '#YOLOswag1337', 'win');
+$db = json_decode(file_get_contents('../db.json'));
+
+$host = $db->host;
+$dbname = $db->dbname;
+$user = $db->user;
+$password = $db->password;
+
+$mysqli = mysqli_connect($host, $user, $password, $dbname);
 
 $dataset = $_GET["set"];
-getData($mysqli, $dataset);
+$from = (isset($_GET["from"]) ? $_GET["from"] : "2000-01-01");
+$to = (isset($_GET["to"]) ? $_GET["to"] : "2099-01-01");
 
-function getData($mysqli, $dataset){
+getData($mysqli, $dataset, $from, $to);
+
+function getData($mysqli, $dataset, $from, $to){
 
   $table = array("google" => "google_raw",
-                 "twitter" => "twitter_raw");
+                 "twitter" => "twitter_raw",
+                 "bitcoin" => "bitcoin_history");
 
-  $query = " SELECT * FROM ".$table[$dataset];
+  $query = " SELECT * FROM ".$table[$dataset].
+           " WHERE Date > ? AND Date < ?";
 
   $stmt = $mysqli->prepare($query);
   try {
-    //$stmt->bind_param("i", 1);
+    $stmt->bind_param("ss", $from, $to);
     $stmt->execute();
   } catch (mysqli_sql_exception $e){
     echo $e->errorMessage();

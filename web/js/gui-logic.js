@@ -1,9 +1,42 @@
+
+
+// The chart GUI logic, needs adaption when new Sources come to play
 $('#toDatePicker').datepicker()
     .on('changeDate', function(ev){
         alert(ev.date.valueOf());
+	//makeMorrisArea("bitcoin",$('#fromDatePicker').val(),$('#toDatePicker').val());
 });
 
 $('#fromDatePicker').datepicker()
     .on('changeDate', function(ev){
         alert(ev.date.valueOf());
+	//makeMorrisArea("bitcoin",$('#fromDatePicker').val(),$('#toDatePicker').val());
+});
+
+jQuery("#bitcoinSetItem").click(function(e){
+//do something
+e.preventDefault();
+
+//alert("makeMorris(bitcoin,"+$('#fromDatePicker').val()+","+$('#toDatePicker').val()+")");
+makeMorrisArea("bitcoin",$('#fromDatePicker').val(),$('#toDatePicker').val());
+});
+
+jQuery("#googleSetItem").click(function(e){
+//do something
+e.preventDefault();
+//alert('google');
+makeMorrisArea("google",$('#fromDatePicker').val(),$('#toDatePicker').val());
+});
+
+jQuery("#twitterSetItem").click(function(e){
+//do something
+e.preventDefault();
+//alert('twitter');
+makeMorrisArea("twitter",$('#fromDatePicker').val(),$('#toDatePicker').val());
+});
+
+jQuery("#allSetItem").click(function(e){
+//do something
+e.preventDefault();
+alert('all');
 });

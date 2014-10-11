@@ -17,7 +17,7 @@ $dataset = $_GET["set"];
 $from = ($_GET["from"] ? $_GET["from"] : "2000-01-01");
 $to = ($_GET["to"] ? $_GET["to"] : "2000-01-01");
 
-getData($mysqli, $dataset);
+getData($mysqli, $dataset, $from, $to);
 
 function getData($mysqli, $dataset, $from, $to){
 

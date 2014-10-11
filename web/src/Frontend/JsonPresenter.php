@@ -23,7 +23,7 @@ class JsonPresenter
 
     public function showChartData($params)
     {
-        $data = $this->dataService->fetchForName($params['name']);
+        $data = $this->dataService->fetchForName($params['name'], $params['from'], $params['to']);
         $json = json_encode($data, JSON_PRETTY_PRINT);
         
         $this->response->setHeader('Content-Type', 'application/json');

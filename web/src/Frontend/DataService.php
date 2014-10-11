@@ -26,15 +26,21 @@ class DataService
 
         $dbname = $this->map[$name];
 
-        $sql = 'SELECT unix_timestamp(Date) as date , SUM( VALUE ) as value
+        $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
             FROM ' . $dbname . '
-            GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
-            ORDER BY YEAR( Date ) DESC';
+            GROUP BY YEAR( Date ) , MONTH( Date ), DAY( Date )
+            ORDER BY Date DESC';
 
         $query = $this->pdo->prepare($sql);
         $query->execute();
 
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $out = [];
+        foreach ($rows as $row) {
+            $out[] = [$row['date'], $row['value']];
+        }
+        return $out;
     }
 }
 

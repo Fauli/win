@@ -20,7 +20,7 @@ class JsonPresenter
     {
         $data = $this->dataService->fetchForName($params['name']);
         $json = json_encode($data, JSON_PRETTY_PRINT);
-
+        
         $this->response->setHeader('Content-Type', 'application/json');
         $this->response->setContent($json);
     }

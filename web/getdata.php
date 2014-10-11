@@ -25,8 +25,12 @@ function getData($mysqli, $dataset){
   }
 
   $res = $stmt->get_result();
+  $out = [];
   while($row = $res->fetch_assoc()){
-    print "{x:'".$row["Date"]."', y:' ".$row["Value"]."'},";
+    $out[] = ["x" => $row["Date"],
+              "y" => $row["Value"]
+             ];
   }
+  print json_encode($out, JSON_PRETTY_PRINT);
 
 }

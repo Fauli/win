@@ -1,0 +1,72 @@
+{% extends "Layout.html" %} 
+{% set title = 'Hackaton Dashboard' %} 
+
+{% block javascript %}
+    <script src="/js/gui-logic.js"></script>
+{% endblock %}
+
+{% block content %}
+ <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <p>This site allows you to see correlations between the various sources in regards to a special topic.</p>
+        <p>Currently this is implemented for Bitcoins, as the whole currency information are available online. At the moment the following sources are available:</p>
+        <ul>
+            <li>Google Trends</li>
+            <li>Twitter data: amount of tweets and positivity/negativity</li>
+            <li>News Sites: Negativity and positivity</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        From:
+        <input id="fromDatePicker" data-provide="datepicker" type="text"  data-date-format="yyyy-mm-dd" value="2012-01-01">
+        To:
+        <input id="toDatePicker" data-provide="datepicker" type="text"  data-date-format="yyyy-mm-dd" value="2014-12-31"><br />
+        Source:
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="setDropdown" data-toggle="dropdown">
+            Data Source
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" id="bitcoinSetItem" href="#">Bitcoin</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" id="googleSetItem" href="#">Google</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" id="twitterSetItem" href="#">Twitter</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" id="allSetItem" href="#">All</a></li>
+            </ul>
+        </div>
+        <input id="selectedSet" type="hidden" value="bitcoin" />
+    </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Different Bitcoin correlations
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        </div>
+                        <div class="panel-body">
+                            notifications
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

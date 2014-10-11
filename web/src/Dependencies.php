@@ -13,4 +13,10 @@ $injector->define('Http\HttpRequest', [
 $injector->alias('Http\Request', 'Http\HttpRequest');
 $injector->share('Http\HttpResponse');
 
+$injector->share('Twig_Environment');
+$injector->delegate('Twig_Environment', function() use ($injector) {
+    $loader = new Twig_Loader_Filesystem('../templates');
+    return new Twig_Environment($loader);
+});
+
 return $injector;

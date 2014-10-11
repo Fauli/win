@@ -11,6 +11,7 @@ class DataService
         'google' => 'google_raw',
         'twitter' => 'twitter_raw',
         'bitcoin' => 'bitcoin_history',
+        'bitcoin-analysis' => 'v_bitcoin_analysis'
     ];
 
     public function __construct(PDO $pdo)
@@ -26,11 +27,19 @@ class DataService
 
         $dbname = $this->map[$name];
 
-        $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
-            FROM ' . $dbname . '
-            WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
-            GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
-            ORDER BY Date DESC';
+        if($name == "bitcoin-analysis"){
+            $sql = 'SELECT unix_timestamp(Date) as date , AVG( DIFFERENCE ) as value
+                FROM ' . $dbname . '
+                WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
+                GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
+                ORDER BY Date DESC';
+        } else{
+            $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
+                FROM ' . $dbname . '
+                WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
+                GROUP BY YEAR( Date ) , MONTH( Date ), MONTH( Date )
+                ORDER BY Date DESC';
+        }
 
         $query = $this->pdo->prepare($sql);
         $query->execute([':from' => $from, ':to' => $to]);
@@ -43,6 +52,7 @@ class DataService
         }
         return $out;
     }
+
 }
 
 class DataServiceException extends \Exception {}

@@ -14,8 +14,8 @@ $password = $db->password;
 $mysqli = mysqli_connect($host, $user, $password, $dbname);
 
 $dataset = $_GET["set"];
-$from = ($_GET["from"] ? $_GET["from"] : "2000-01-01")
-$to = ($_GET["to"] ? $_GET["to"] : "2000-01-01")
+$from = ($_GET["from"] ? $_GET["from"] : "2000-01-01");
+$to = ($_GET["to"] ? $_GET["to"] : "2000-01-01");
 
 getData($mysqli, $dataset);
 

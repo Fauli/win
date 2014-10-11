@@ -46,9 +46,9 @@ $(function() {
 
             if (data.length > 0) {
                 $.plot("#chart", data, {
-                    yaxis: {
-                        min: 0
-                    },
+                    yaxes: [
+                        {min: 0}, {min: 0},{min: 0}
+                    ],
                     xaxis: {
                         tickDecimals: 0,
                         mode: "time",

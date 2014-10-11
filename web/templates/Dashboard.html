@@ -30,43 +30,30 @@
         From:
         <input id="fromDatePicker" data-provide="datepicker" type="text"  data-date-format="yyyy-mm-dd" value="2012-01-01">
         To:
-        <input id="toDatePicker" data-provide="datepicker" type="text"  data-date-format="yyyy-mm-dd" value="2014-12-31"><br />
-        Source:
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="setDropdown" data-toggle="dropdown">
-            Data Source
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" id="bitcoinSetItem" href="#">Bitcoin</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" id="googleSetItem" href="#">Google</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" id="twitterSetItem" href="#">Twitter</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" id="allSetItem" href="#">All</a></li>
-            </ul>
-        </div>
-        <input id="selectedSet" type="hidden" value="bitcoin" />
+        <input id="toDatePicker" data-provide="datepicker" type="text"  data-date-format="yyyy-mm-dd" value="2014-12-31">
+        <br>
+        <br>
     </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Different Bitcoin correlations
-                </div>
-                <div class="panel-body">
-                    <div id="chart" style="height:500px;"></div>
-                    <div id="choices"></div>
-                </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Different Bitcoin correlations
+            </div>
+            <div class="panel-body">
+                <div id="chart" style="height:500px;"></div>
+                <div id="choices"></div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                </div>
-                <div  id="notificationBody" class="panel-body">
-                    notifications
-                </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> Notifications Panel
+            </div>
+            <div  id="notificationBody" class="panel-body">
+                notifications
             </div>
         </div>
     </div>

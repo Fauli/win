@@ -10,7 +10,7 @@ $('#toDatePicker').datepicker()
 $('#fromDatePicker').datepicker()
     .on('changeDate', function(ev){
         //alert(ev.date.valueOf());
-	makeMorrisArea($('#selectedSet').val();,$('#fromDatePicker').val(),$('#toDatePicker').val());
+	makeMorrisArea($('#selectedSet').val(),$('#fromDatePicker').val(),$('#toDatePicker').val());
 	//alert($('#selectedSet').val()+","+$('#fromDatePicker').val()+","+$('#toDatePicker').val());
 });
 

@@ -10,7 +10,8 @@ class Scraper
 {
     private $client;
     private $amount = 100;
-    private $tries = 5;
+    private $maxTries = 5;
+    private $sleepInSeconds = 5;
     private $url = 'http://otter.topsy.com/search.js';
 
     public function __construct(Client $client)
@@ -26,9 +27,14 @@ class Scraper
         $this->amount = (int) $amount;
     }
 
-    public function setTries($tries)
+    public function setSleepInSeconds($seconds)
     {
-        $this->tries = (int) $tries;
+        $this->sleepInSeconds = (integer) $seconds;
+    }
+
+    public function setMaxTries($maxTries)
+    {
+        $this->maxTries = (int) $maxTries;
     }
 
     public function scrape(DateTime $date)
@@ -36,9 +42,25 @@ class Scraper
         $from = $date->getTimestamp();
         $to = $date->modify('+1 day')->getTimestamp();
 
+        $remainingAmount = $this->amount;
+        $offset = 0;
+
+        $pages = [];
+        while ($remainingAmount > 0) {
+            $amount = ($remainingAmount > 100) ? 100 : $remainingAmount;
+            $pages[] = $this->getPage($amount, $offset, $from, $to);
+            $offset = $offset + $amount;
+            $remainingAmount = $remainingAmount - $amount;
+            sleep($this->sleepInSeconds);
+        }
+        return $pages;
+    }
+
+    private function getPage($amount, $offset, $from, $to)
+    {
         $params = [
             'q' => 'bitcoin',
-            'perpage' => $this->amount,
+            'perpage' => $amount,
             'sort_method' => '-date',
             'apikey' => '09C43A9B270A470B8EB8F2946A9369F3',
             'mintime' => $from,
@@ -50,16 +72,20 @@ class Scraper
         $request->setProtocol('1.1');
         $request->setMethod('GET');
 
+        return $this->getResponse($request)->getBody();
+    }
+
+    private function getResponse($request)
+    {
         $tryCounter = 0;
-        while ($tryCounter < $this->tries) {
+        while ($tryCounter < $this->maxTries) {
             try {
                 $response = $this->client->request($request);
-                return $response->getBody();
+                return $response;
             } catch (\Exception $e) {
                 $tryCounter++;
             }
         }
-
         throw new ClientScraperException;
     }
 }

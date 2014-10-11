@@ -4,7 +4,16 @@ namespace TweetScraper;
 
 class Parser
 {
-    public function parse($content)
+    public function parse(array $pages)
+    {
+        $out = [];
+        foreach ($pages as $page) {
+            $out = array_merge($out, $this->parsePage($page));
+        }
+        return $out;
+    }
+
+    public function parsePage($content)
     {
         $parsed = [];
 
@@ -18,11 +27,9 @@ class Parser
             throw new MissingDataParserException('data format incorrect');
         }
 
-        echo count($data->response->list);die;
-
         foreach ($data->response->list as $item) {
             $parsed[] = [
-                'timestamp' => $item->firstpost_date,
+                'timestamp' => $item->trackback_date,
                 'value' => $item->content,
             ];
         }

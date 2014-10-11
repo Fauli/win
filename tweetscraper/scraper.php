@@ -27,10 +27,10 @@ $scraper = new TweetScraper\Scraper($client);
 $parser = new TweetScraper\Parser;
 $persister = new TweetScraper\Persister($pdo);
 
-$from = new DateTime('2014-10-01');
+$from = new DateTime('2014-07-01');
 $to = new DateTime('2014-10-10');
 
 $dateRangeScraper = new TweetScraper\DateRangeScraper($scraper, $parser, $persister);
-$dateRangeScraper->setSleepInSeconds(30);
-$dateRangeScraper->setAmount(500);
+$dateRangeScraper->setSleepInSeconds(10);
+$dateRangeScraper->setAmount(1000);
 $dateRangeScraper->scrape($from, $to);

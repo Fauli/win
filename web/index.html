@@ -12,7 +12,7 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -151,16 +151,9 @@ ATTENTION FOLKS, I CHANGED THE #page-wapper CSS value from 0px 0px 0px 250px for
                             </div>
                         </div>
    From:
-    <div class="input-append date" id="fromDate" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-    <input class="span2" size="16" type="text" value="12-02-2012">
-    <span class="add-on"><i class="icon-th"></i></span>
-    </div>
-
+<input id="fromDatePicker" data-provide="datepicker" ype="text" value="12-02-2012">
    To:
-    <div class="input-append date" id="toDate" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-    <input class="span2" size="16" type="text" value="12-02-2012">
-    <span class="add-on"><i class="icon-th"></i></span>
-    </div>
+<input id="toDatePicker" data-provide="datepicker" ype="text" value="31-12-2014">
 
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -351,7 +344,7 @@ ATTENTION FOLKS, I CHANGED THE #page-wapper CSS value from 0px 0px 0px 250px for
     <script src="js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 
     <!-- Bootstrap Date Picker -->
     <script src="js/bootstrap-datepicker.js"></script>
@@ -363,6 +356,7 @@ ATTENTION FOLKS, I CHANGED THE #page-wapper CSS value from 0px 0px 0px 250px for
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
+    <script src="js/gui-logic.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>

@@ -6,8 +6,15 @@ $woops = new \Whoops\Run;
 $woops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $woops->register();
 
+$db = json_decode(file_get_contents('../db.json'));
+
+$host = $db->host;
+$dbname = $db->dbname;
+$user = $db->user;
+$password = $db->password;
+
 try {
-    $pdo = new PDO("mysql:host=151.236.222.251;dbname=win", 'yolo', '#YOLOswag1337');
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 } catch(PDOException $e) {
     echo $e->getMessage();
     exit;
@@ -19,7 +26,7 @@ $client = new Artax\Client;
 $scraper = new TweetScraper\Scraper($client);
 
 $date = new DateTime();
-$date->setTimestamp(strtotime('2014-10-01'));
+$date->setTimestamp(strtotime('2014-10-02'));
 
 $body = $scraper->scrape($url, $date);
 //$body = file_get_contents('data/testdata.json');

@@ -7,18 +7,22 @@
 $mysqli = mysqli_connect('151.236.222.251', 'yolo', '#YOLOswag1337', 'win');
 
 $dataset = $_GET["set"];
+$from = ($_GET["from"] ? $_GET["from"] : "2000-01-01")
+$to = ($_GET["to"] ? $_GET["to"] : "2000-01-01")
+
 getData($mysqli, $dataset);
 
-function getData($mysqli, $dataset){
+function getData($mysqli, $dataset, $from, $to){
 
   $table = array("google" => "google_raw",
                  "twitter" => "twitter_raw");
 
-  $query = " SELECT * FROM ".$table[$dataset];
+  $query = " SELECT * FROM ".$table[$dataset]
+           " WHERE Date > ? AND Date < ?";
 
   $stmt = $mysqli->prepare($query);
   try {
-    //$stmt->bind_param("i", 1);
+    $stmt->bind_param("ss", $from, $to);
     $stmt->execute();
   } catch (mysqli_sql_exception $e){
     echo $e->errorMessage();

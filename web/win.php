@@ -8,7 +8,14 @@
  *
  */
 
-$mysqli = mysqli_connect('151.236.222.251', 'yolo', '#YOLOswag1337', 'win');
+$db = json_decode(file_get_contents('../db.json'));
+
+$host = $db->host;
+$dbname = $db->dbname;
+$user = $db->user;
+$password = $db->password;
+
+$mysqli = mysqli_connect($host, $user, $password, $dbname);
 
 if ($mysqli->connect_error) {
   die('Connect Error (' . $mysqli->connect_errno . ') '
@@ -22,11 +29,6 @@ $dataset = "google_raw";
 // load template and end of main logic
 include "index.html";
 exit;
-
-/*
- * functions
- */
-
 
 
 ?>

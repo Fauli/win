@@ -4,8 +4,8 @@ $(function() {
 
 makeMorrisArea = new Function(set, from, to){
   if(typeof(set) == "undefined"){ return; }
-  if(typeof(from) == "undefined"){ from = "2000-01-01; }
-  if(typeof(to) == "undefined"){ to = "2099-01-01; }
+  if(typeof(from) == "undefined"){ from = "2000-01-01"; }
+  if(typeof(to) == "undefined"){ to = "2099-01-01"; }
 
   $.getJSON("http://151.236.222.251/win/web/getdata.php?set=google"
              +(typeof(from) != "undefined" ? "?from="+from : "")

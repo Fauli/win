@@ -8,8 +8,8 @@ function makeMorrisArea(set, from, to){
   if(typeof(to) == "undefined"){ to = "2099-01-01"; }
 
   $.getJSON("http://151.236.222.251/win/web/getdata.php?set=google"
-             +(typeof(from) != "undefined" ? "?from="+from : "")
-             +(typeof(to) != "undefined" ? "?to="+to : ""), 
+             +(typeof(from) != "undefined" ? "&from="+from : "")
+             +(typeof(to) != "undefined" ? "&to="+to : ""), 
              function(jsonData){
       // alert("adsf"+(typeof(from)!="undefined"&&"from="+from)+(typeof(to)!="undefined"&&"to"+to));
     console.log(jsonData);

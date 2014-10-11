@@ -16,10 +16,10 @@ class Persister
     public function persist($term, array $data)
     {
         $sql = 'INSERT INTO win.twitter_raw (Date,Term,Value) VALUES (FROM_UNIXTIME(:timestamp),:term,:value);';
-        
+            
         foreach ($data as $row) {
             if (!is_array($row) || !array_key_exists('timestamp', $row) || !array_key_exists('value', $row)) {
-                throw new InvalidDataPersisterException;
+                throw new InvalidDataException;
             }
 
             $query = $this->pdo->prepare($sql);
@@ -33,4 +33,4 @@ class Persister
 }
 
 class PersisterException extends \Exception {}
-class InvalidDataPersisterException extends PersisterException {}
+class InvalidDataException extends PersisterException {}

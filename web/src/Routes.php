@@ -8,4 +8,8 @@ return [
         'Web\Frontend\JsonPresenter',
         'showChartData',
     ]],
+    ['GET', '/notifications/getJsonData', [
+        'Web\Frontend\JsonPresenter',
+        'showNotificationData',
+    ]],
 ];

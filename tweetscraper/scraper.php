@@ -37,6 +37,6 @@ $from = new DateTime($argv[1]);
 $to = new DateTime($argv[2]);
 
 $dateRangeScraper = new TweetScraper\DateRangeScraper($scraper, $parser, $persister);
-$dateRangeScraper->setSleepInSeconds(10);
+$dateRangeScraper->setSleepInSeconds(1);
 $dateRangeScraper->setAmount(1000);
 $dateRangeScraper->scrape($from, $to);

@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace TweetScraper;
 
 use DateTime;
@@ -9,7 +9,7 @@ use DatePeriod;
 class DateRangeScraper
 {
     private $amount = 50;
-    private $sleepInSeconds = 60;
+    private $sleepInSeconds = 1;
     private $identifier = 'btc';
     private $scraper;
     private $parser;
@@ -47,7 +47,13 @@ class DateRangeScraper
 
         $this->scraper->setAmount($this->amount);
 
-        foreach ($period as $date) {
+	$result = array();
+	foreach ($period as $revDate) {
+	 	array_unshift ($result, $revDate);
+		#echo 'Pushing'.$revDate->format('Y-m-d') . PHP_EOL;
+	}
+ 	
+        foreach ($result as $date) {
             $content = $this->scraper->scrape($date);
             $data = $this->parser->parse($content);
             $this->persister->persist($this->identifier, $data);

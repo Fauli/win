@@ -15,7 +15,7 @@ class Persister
 
     public function persist($term, array $data)
     {
-        $sql = 'INSERT INTO win.twitter_raw (Date,Term,Value) VALUES (FROM_UNIXTIME(:timestamp),:term,:value);';
+        $sql = 'INSERT INTO win.twitter_raw (Date,Term,Content) VALUES (FROM_UNIXTIME(:timestamp),:term,:value);';
             
         foreach ($data as $row) {
             if (!is_array($row) || !array_key_exists('timestamp', $row) || !array_key_exists('value', $row)) {

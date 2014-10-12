@@ -1,30 +1,36 @@
 $(function() {
-    redrawMainChart();
+    drawMainChart();
+
+    drawDailyChangeChart()
 
     $('#toDatePicker').datepicker().on('changeDate', function(ev){
-        redrawMainChart();
+        drawMainChart();
     });
 
     $('#fromDatePicker').datepicker().on('changeDate', function(ev){
-        redrawMainChart();
+        drawMainChart();
     });
 });
 
-function ajax1() {
+function getChartDataBitcoin() {
     return $.getJSON("/charts/getJsonData/bitcoin/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
 }
 
-function ajax2() {
+function getChartDataTwitter() {
     return $.getJSON("/charts/getJsonData/twitter/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
 }
 
-function ajax3() {
+function getChartDataGoogle() {
     return $.getJSON("/charts/getJsonData/google/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
 }
 
-function redrawMainChart()
+function getChartDataBitcoinHistory() {
+    return $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+}
+
+function drawMainChart()
 {
-    $.when(ajax1(), ajax2(), ajax3()).done(function(bitcoin, twitter, google){
+    $.when(getChartDataBitcoin(), getChartDataTwitter(), getChartDataGoogle()).done(function(bitcoin, twitter, google){
 
         var datasets = {
             "bitcoin": {
@@ -84,6 +90,36 @@ function redrawMainChart()
                         {position: "right", min: -2.5, max:2.5}, 
                         {position: "right", min: 0, max:100}
                     ]
+                });
+            }
+        }
+
+        plotAccordingToChoices();
+    });
+
+}
+
+function drawDailyChangeChart()
+{
+    $.when(getChartDataBitcoinHistory()).done(function(bitcoin_analysis){
+
+        function plotAccordingToChoices() {
+
+            var dataset = {
+                              label: "bitcoin daily change",
+                              data: bitcoin_analysis[0]
+                          };
+
+            if (dataset.length > 0) {
+                $.plot("#chart-dailychange", dataset, {
+                    yaxes: [
+                        {min: 0}, {min: 0},{min: 0}
+                    ],
+                    xaxis: {
+                        tickDecimals: 0,
+                        mode: "time",
+                        timeformat: "%d.%b.%y"
+                    }
                 });
             }
         }

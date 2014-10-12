@@ -81,7 +81,7 @@ function redrawMainChart()
                     }],
                     yaxes: [
 			{position: "left", min: 0, max: 1300},
-                        {position: "right", min: -1, max:1}, 
+                        {position: "right", min: -2.5, max:2.5}, 
                         {position: "right", min: 0, max:100}
                     ]
                 });

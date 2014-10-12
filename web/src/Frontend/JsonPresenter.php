@@ -23,7 +23,11 @@ class JsonPresenter
 
     public function showChartData($params)
     {
-        $data = $this->dataService->fetchForName($params['name'], $params['from'], $params['to']);
+        $granularity = 'DAY';
+        if ($params['granularity'] === '1') $granularity = 'WEEK';
+        if ($params['granularity'] === '2') $granularity = 'MONTH';
+
+        $data = $this->dataService->fetchForName($params['name'], $params['from'], $params['to'], $granularity);
         $json = json_encode($data, JSON_PRETTY_PRINT);
         
         $this->response->setHeader('Content-Type', 'application/json');

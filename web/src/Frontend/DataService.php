@@ -20,15 +20,13 @@ class DataService
         $this->pdo = $pdo;
     }
 
-    public function fetchForName($name, $from, $to)
+    public function fetchForName($name, $from, $to, $granularity)
     {
         if (!array_key_exists($name, $this->map)) {
             throw new InvalidNameException;
         }
 
         $dbname = $this->map[$name];
-
-        $granularity = 'DAY'; // WEEK MONTH
 
         $avg = ($name === "bitcoin-analysis") ? 'DIFFERENCE' : 'VALUE';
         $avg = ($name === 'twitter-advanced') ? 'ADVANCEDVALUE' : $avg;

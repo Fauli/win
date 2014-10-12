@@ -1,8 +1,6 @@
 $(function() {
     drawMainChart();
 
-    drawDailyChangeChart();
-
     $('#datepickerContainer input').datepicker({
         format: "yyyy-mm-dd",
         startView: 1,
@@ -10,26 +8,34 @@ $(function() {
     }).on('changeDate', function(ev){
         drawMainChart();
     });
+
+    $('.granularityPicker').change(function(){
+        drawMainChart();
+    });
 });
 
 function getChartDataBitcoin() {
-    return $.getJSON("/charts/getJsonData/bitcoin/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+    return $.getJSON("/charts/getJsonData/bitcoin/" + getUrlAppendage());
 }
 
 function getChartDataTwitter() {
-    return $.getJSON("/charts/getJsonData/twitter/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+    return $.getJSON("/charts/getJsonData/twitter/" + getUrlAppendage());
 }
 
 function getChartDataTwitterAdvanced() {
-    return $.getJSON("/charts/getJsonData/twitter-advanced/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+    return $.getJSON("/charts/getJsonData/twitter-advanced/" + getUrlAppendage());
 }
 
 function getChartDataGoogle() {
-    return $.getJSON("/charts/getJsonData/google/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+    return $.getJSON("/charts/getJsonData/google/" + getUrlAppendage());
 }
 
 function getChartDataBitcoinAnalysis() {
-    return $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+    return $.getJSON("/charts/getJsonData/bitcoin-analysis/" + getUrlAppendage());
+}
+
+function getUrlAppendage() {
+    return $('#fromDatePicker').val() + '/' + $('#toDatePicker').val() + '/' + $('input[name=granularityPicker]:checked').val()
 }
 
 function drawMainChart()
@@ -68,12 +74,6 @@ function drawMainChart()
                 color: 'red'
             }
         };
-
-        /*var i = 0;
-        $.each(datasets, function(key, val) {
-            val.color = i;
-            ++i;
-        });*/
 
         var choiceContainer = $("#choices");
         if (!choiceContainer.html()) {
@@ -134,19 +134,3 @@ function drawMainChart()
     });
 
 }
-
-function drawDailyChangeChart()
-{
-    $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val(), function(data){
-        if (data.length > 0) {
-            $.plot("#chart-dailychange", [data], {
-                xaxis: {
-                    tickDecimals: 0,
-                    mode: "time",
-                    timeformat: "%d.%b.%y"
-                }
-            });
-        }
-    });
-}
-

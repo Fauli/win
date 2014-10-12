@@ -97,32 +97,33 @@ function drawMainChart()
         plotAccordingToChoices();
     });
 
-    function drawDailyChangeChart()
-    {
-        $.when(getChartDataBitcoinHistory()).done(function(bitcoin_analysis){
+}
 
-            function plotAccordingToChoices() {
+function drawDailyChangeChart()
+{
+    $.when(getChartDataBitcoinHistory()).done(function(bitcoin_analysis){
 
-                var dataset = {
-                                  label: "bitcoin daily change",
-                                  data: bitcoin_analysis[0]
-                              };
+        function plotAccordingToChoices() {
 
-                if (dataset.length > 0) {
-                    $.plot("#chart-dailychange", dataset, {
-                        yaxes: [
-                            {min: 0}, {min: 0},{min: 0}
-                        ],
-                        xaxis: {
-                            tickDecimals: 0,
-                            mode: "time",
-                            timeformat: "%d.%b.%y"
-                        }
-                    });
-                }
+            var dataset = {
+                              label: "bitcoin daily change",
+                              data: bitcoin_analysis[0]
+                          };
+
+            if (dataset.length > 0) {
+                $.plot("#chart-dailychange", dataset, {
+                    yaxes: [
+                        {min: 0}, {min: 0},{min: 0}
+                    ],
+                    xaxis: {
+                        tickDecimals: 0,
+                        mode: "time",
+                        timeformat: "%d.%b.%y"
+                    }
+                });
             }
+        }
 
-            plotAccordingToChoices();
-        });
-    }
+        plotAccordingToChoices();
+    });
 }

@@ -121,7 +121,9 @@ function drawMainChart()
                         color: 'green'
                     },
                     {
-                        color: 'red'
+                        color: 'red',
+                        min: -400,
+                        max: 400
                     }
                     ]
                 });

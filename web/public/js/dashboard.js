@@ -55,8 +55,8 @@ function drawMainChart()
         var choiceContainer = $("#choices");
         if (!choiceContainer.html()) {
             $.each(datasets, function(key, val) {
-                choiceContainer.append("<br/><input type='checkbox' name='" + key +
-                        "' checked='checked' id='id" + key + "'></input>" +
+                choiceContainer.append(" <input type='checkbox' name='" + key +
+                        "' checked='checked' id='id" + key + "'></input> " +
                         "<label for='id" + key + "'>"
                         + val.label + "</label>");
             });

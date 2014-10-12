@@ -20,29 +20,47 @@ function getChartDataTwitter() {
     return $.getJSON("/charts/getJsonData/twitter/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
 }
 
+function getChartDataTwitterAdvanced() {
+    return $.getJSON("/charts/getJsonData/twitter-advanced/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+}
+
 function getChartDataGoogle() {
     return $.getJSON("/charts/getJsonData/google/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
 }
 
+function getChartDataBitcoinAnalysis() {
+    return $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
+}
+
 function drawMainChart()
 {
-    $.when(getChartDataBitcoin(), getChartDataTwitter(), getChartDataGoogle()).done(function(bitcoin, twitter, google){
+    $.when(getChartDataBitcoin(), getChartDataTwitter(), getChartDataTwitterAdvanced(), getChartDataGoogle(), getChartDataBitcoinAnalysis()).done(function(bitcoin, twitter, twitteradvanced, google, bitcoinanalysis){
 
         var datasets = {
-            "bitcoin": {
-                label: "bitcoin",
+            "bitcoin price": {
+                label: "bitcoin price",
                 data: bitcoin[0],
                 yaxis: 1
             },
-            "twitter": {
-                label: "twitter",
+            "twitter sentiment simple": {
+                label: "twitter sentiment simple",
                 data: twitter[0],
                 yaxis: 2
             },
-            "google": {
-                label: "google",
-                data: google[0],
+            "twitter sentiment advanced": {
+                label: "twitter sentiment advanced",
+                data: twitteradvanced[0],
                 yaxis: 3
+            },
+            "google search volume": {
+                label: "google search volume",
+                data: google[0],
+                yaxis: 4
+            },
+            "bitcoin value change": {
+                label: "bitcoin value change",
+                data: bitcoinanalysis[0],
+                yaxis: 5
             }
         };
 
@@ -55,8 +73,12 @@ function drawMainChart()
         var choiceContainer = $("#choices");
         if (!choiceContainer.html()) {
             $.each(datasets, function(key, val) {
+                var checked = '';
+                if (key == 'bitcoin price' || key == 'google search volume') {
+                    checked = "checked='checked'";
+                }
                 choiceContainer.append(" <input type='checkbox' name='" + key +
-                        "' checked='checked' id='id" + key + "'></input> " +
+                        "' " + checked + " id='id" + key + "'></input> " +
                         "<label for='id" + key + "'>"
                         + val.label + "</label>");
             });
@@ -80,12 +102,8 @@ function drawMainChart()
                     xaxes: [{
                         mode: "time",
                         timeformat: "%d.%b.%y"
-                    }],
-                    yaxes: [
-                        {position: "right", min: 0, max: 1300, color: 0},
-                        {position: "left", min: -2.5, max:2.5, color: 1}, 
-                        {position: "right", min: 0, max:100, color: 2}
-                    ]
+                    }]
+
                 });
             }
         }

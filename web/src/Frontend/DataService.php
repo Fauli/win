@@ -10,6 +10,7 @@ class DataService
     private $map = [
         'google' => 'google_raw',
         'twitter' => 'twitter_raw',
+        'twitter-advanced' => 'twitter_raw',
         'bitcoin' => 'bitcoin_history',
         'bitcoin-analysis' => 'v_bitcoin_analysis'
     ];
@@ -27,19 +28,16 @@ class DataService
 
         $dbname = $this->map[$name];
 
-        if($name == "bitcoin-analysis"){
-            $sql = 'SELECT unix_timestamp(Date) as date , AVG( DIFFERENCE ) as value
+        $granularity = 'DAY'; // WEEK MONTH
+
+        $avg = ($name === "bitcoin-analysis") ? 'DIFFERENCE' : 'VALUE';
+        $avg = ($name === 'twitter-advanced') ? 'ADVANCEDVALUE' : $avg;
+
+        $sql = 'SELECT unix_timestamp(Date) as date , AVG( ' . $avg . ' ) as value
                 FROM ' . $dbname . '
                 WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
-                GROUP BY YEAR( Date ) , MONTH( Date ), WEEK( Date )
+                GROUP BY YEAR( Date ) , MONTH( Date ), ' . $granularity . '( Date )
                 ORDER BY Date DESC';
-        } else{
-            $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
-                FROM ' . $dbname . '
-                WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
-                GROUP BY YEAR( Date ) , MONTH( Date ), DAY( Date )
-                ORDER BY Date DESC';
-        }
 
         $query = $this->pdo->prepare($sql);
         $query->execute([':from' => $from, ':to' => $to]);

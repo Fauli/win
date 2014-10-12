@@ -1,13 +1,13 @@
 $(function() {
     drawMainChart();
 
-    drawDailyChangeChart()
+    drawDailyChangeChart();
 
-    $('#toDatePicker').datepicker().on('changeDate', function(ev){
-        drawMainChart();
-    });
-
-    $('#fromDatePicker').datepicker().on('changeDate', function(ev){
+    $('#datepickerContainer input').datepicker({
+        format: "yyyy-mm-dd",
+        startView: 1,
+        autoclose: true
+    }).on('changeDate', function(ev){
         drawMainChart();
     });
 });
@@ -127,3 +127,4 @@ function drawDailyChangeChart()
         plotAccordingToChoices();
     });
 }
+

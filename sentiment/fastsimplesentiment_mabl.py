@@ -5,10 +5,6 @@ import csv
 import MySQLdb
 import json
 
-
-
-
-
 def dbconnect_fordata(cur):
 
     cur

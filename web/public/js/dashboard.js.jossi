@@ -35,18 +35,15 @@ function drawMainChart()
         var datasets = {
             "bitcoin": {
                 label: "bitcoin",
-                data: bitcoin[0],
-		yaxis: 1
+                data: bitcoin[0]
             },
             "twitter": {
                 label: "twitter",
-                data: twitter[0],
-		yaxis: 2
+                data: twitter[0]
             },
             "google": {
                 label: "google",
-                data: google[0],
-		yaxis: 3
+                data: google[0]
             }
         };
 
@@ -81,48 +78,47 @@ function drawMainChart()
 
             if (data.length > 0) {
                 $.plot("#chart", data, {
-                    xaxes: [{
+                    yaxes: [
+                        {min: 0}, {min: 0},{min: 0}
+                    ],
+                    xaxis: {
+                        tickDecimals: 0,
                         mode: "time",
                         timeformat: "%d.%b.%y"
-                    }],
-                    yaxes: [
-			{position: "left", min: 0, max: 1300},
-                        {position: "right", min: -1, max:1}, 
-                        {position: "right", min: 0, max:100}
-                    ]
+                    }
                 });
             }
         }
 
         plotAccordingToChoices();
     });
+}
 
-    function drawDailyChangeChart()
-    {
-        $.when(getChartDataBitcoinHistory()).done(function(bitcoin_analysis){
+function drawDailyChangeChart()
+{
+    $.when(getChartDataBitcoinHistory()).done(function(bitcoin_analysis){
 
-            function plotAccordingToChoices() {
+        function plotAccordingToChoices() {
 
-                var dataset = {
-                                  label: "bitcoin daily change",
-                                  data: bitcoin_analysis[0]
-                              };
+            var dataset = {
+                              label: "bitcoin daily change",
+                              data: bitcoin_analysis[0]
+                          };
 
-                if (dataset.length > 0) {
-                    $.plot("#chart-dailychange", dataset, {
-                        yaxes: [
-                            {min: 0}, {min: 0},{min: 0}
-                        ],
-                        xaxis: {
-                            tickDecimals: 0,
-                            mode: "time",
-                            timeformat: "%d.%b.%y"
-                        }
-                    });
-                }
+            if (dataset.length > 0) {
+                $.plot("#chart-dailychange", dataset, {
+                    yaxes: [
+                        {min: 0}, {min: 0},{min: 0}
+                    ],
+                    xaxis: {
+                        tickDecimals: 0,
+                        mode: "time",
+                        timeformat: "%d.%b.%y"
+                    }
+                });
             }
+        }
 
-            plotAccordingToChoices();
-        });
-    }
+        plotAccordingToChoices();
+    });
 }

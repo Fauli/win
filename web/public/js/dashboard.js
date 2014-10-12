@@ -40,35 +40,40 @@ function drawMainChart()
             "bitcoin price": {
                 label: "bitcoin price",
                 data: bitcoin[0],
-                yaxis: 1
+                yaxis: 1,
+                color: 'orange'
             },
             "twitter sentiment simple": {
                 label: "twitter sentiment simple",
                 data: twitter[0],
-                yaxis: 2
+                yaxis: 2,
+                color: 'lightblue'
             },
             "twitter sentiment advanced": {
                 label: "twitter sentiment advanced",
                 data: twitteradvanced[0],
-                yaxis: 3
+                yaxis: 3,
+                color: 'blue'
             },
             "google search volume": {
                 label: "google search volume",
                 data: google[0],
-                yaxis: 4
+                yaxis: 4,
+                color: 'green'
             },
             "bitcoin value change": {
                 label: "bitcoin value change",
                 data: bitcoinanalysis[0],
-                yaxis: 5
+                yaxis: 5,
+                color: 'red'
             }
         };
 
-        var i = 0;
+        /*var i = 0;
         $.each(datasets, function(key, val) {
             val.color = i;
             ++i;
-        });
+        });*/
 
         var choiceContainer = $("#choices");
         if (!choiceContainer.html()) {
@@ -102,8 +107,23 @@ function drawMainChart()
                     xaxes: [{
                         mode: "time",
                         timeformat: "%d.%b.%y"
-                    }]
-
+                    }],
+                    yaxes: [{
+                        color: 'orange'
+                    },
+                    {
+                        color: 'lightblue'
+                    },
+                    {
+                        color: 'blue'
+                    },
+                    {
+                        color: 'green'
+                    },
+                    {
+                        color: 'red'
+                    }
+                    ]
                 });
             }
         }

@@ -24,13 +24,11 @@ function getChartDataGoogle() {
     return $.getJSON("/charts/getJsonData/google/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
 }
 
-function getChartDataBitcoinHistory() {
-    return $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val());
-}
-
 function drawMainChart()
 {
     $.when(getChartDataBitcoin(), getChartDataTwitter(), getChartDataGoogle()).done(function(bitcoin, twitter, google){
+
+        console.log("here: "+bitcoin[0])
 
         var datasets = {
             "bitcoin": {
@@ -101,29 +99,16 @@ function drawMainChart()
 
 function drawDailyChangeChart()
 {
-    $.when(getChartDataBitcoinHistory()).done(function(bitcoin_analysis){
-
-        function plotAccordingToChoices() {
-
-            var dataset = {
-                              label: "bitcoin daily change",
-                              data: bitcoin_analysis[0]
-                          };
-
-            if (dataset.length > 0) {
-                $.plot("#chart-dailychange", dataset, {
-                    yaxes: [
-                        {min: 0}, {min: 0},{min: 0}
-                    ],
-                    xaxis: {
-                        tickDecimals: 0,
-                        mode: "time",
-                        timeformat: "%d.%b.%y"
-                    }
-                });
-            }
+    $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val(), function(data){
+        console.log(data);
+        if (data.length > 0) {
+            $.plot("#chart-dailychange", [data], {
+                xaxis: {
+                    tickDecimals: 0,
+                    mode: "time",
+                    timeformat: "%d.%b.%y"
+                }
+            });
         }
-
-        plotAccordingToChoices();
     });
 }

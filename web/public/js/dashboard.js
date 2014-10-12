@@ -29,15 +29,18 @@ function redrawMainChart()
         var datasets = {
             "bitcoin": {
                 label: "bitcoin",
-                data: bitcoin[0]
+                data: bitcoin[0],
+		yaxis: 1
             },
             "twitter": {
                 label: "twitter",
-                data: twitter[0]
+                data: twitter[0],
+		yaxis: 2
             },
             "google": {
                 label: "google",
-                data: google[0]
+                data: google[0],
+		yaxis: 3
             }
         };
 
@@ -77,7 +80,7 @@ function redrawMainChart()
                         timeformat: "%d.%b.%y"
                     }],
                     yaxes: [
-                        {position: "left", min: 0, max: 1300}, 
+			{position: "left", min: 0, max: 1300},
                         {position: "right", min: -1, max:1}, 
                         {position: "right", min: 0, max:100}
                     ]

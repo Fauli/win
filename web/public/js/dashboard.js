@@ -28,23 +28,21 @@ function drawMainChart()
 {
     $.when(getChartDataBitcoin(), getChartDataTwitter(), getChartDataGoogle()).done(function(bitcoin, twitter, google){
 
-        console.log("here: "+bitcoin[0])
-
         var datasets = {
             "bitcoin": {
                 label: "bitcoin",
                 data: bitcoin[0],
-		yaxis: 1
+                yaxis: 1
             },
             "twitter": {
                 label: "twitter",
                 data: twitter[0],
-		yaxis: 2
+                yaxis: 2
             },
             "google": {
                 label: "google",
                 data: google[0],
-		yaxis: 3
+                yaxis: 3
             }
         };
 
@@ -84,9 +82,9 @@ function drawMainChart()
                         timeformat: "%d.%b.%y"
                     }],
                     yaxes: [
-			{position: "left", min: 0, max: 1300},
-                        {position: "right", min: -2.5, max:2.5}, 
-                        {position: "right", min: 0, max:100}
+                        {position: "right", min: 0, max: 1300, color: 0},
+                        {position: "left", min: -2.5, max:2.5, color: 1}, 
+                        {position: "right", min: 0, max:100, color: 2}
                     ]
                 });
             }
@@ -100,7 +98,6 @@ function drawMainChart()
 function drawDailyChangeChart()
 {
     $.getJSON("/charts/getJsonData/bitcoin-analysis/" + $('#fromDatePicker').val() + '/' + $('#toDatePicker').val(), function(data){
-        console.log(data);
         if (data.length > 0) {
             $.plot("#chart-dailychange", [data], {
                 xaxis: {

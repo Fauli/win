@@ -14,17 +14,37 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <p>This site allows you to see correlations between various sources in regards to a special topic.</p>
         <p>Currently this is implemented for Bitcoins, as the whole currency information are available online. At the moment the following sources are available:</p>
         <ul>
-            <li>Google Trends</li>
+            <!--<li>Google Trends</li>
             <li>Twitter data: amount of tweets and positivity/negativity</li>
-            <li>News Sites: Negativity and positivity</li>
+            <li>News Sites: Negativity and positivity</li>-->
+            <li><b>Bitcoin:</b>
+             Daily Average of Bitcoin Trades, based on Data from https://bitcoinaverage.com/ 
+
+            <li><b>Google:</b> Amount of Google Requests in Percent of Max-Search Volume during the Timeframe. Data older than 3 Monet is granulated twice a month.</li>
+
+            <li><b>Simple Twitter Sentiment Analyser:</b>
+             Daily average of the positive/negative sentiment of 1000 daily tweets about the subject.
+             Assigns a sentiment score to a tweet based on the AFINN-111 Wordset. (contains ~ 2500 words)</li>
+
+            <li><b>Advanced Twitter Sentiment Analyser:</b>
+             Daily average of the positive/negative sentiment of 1000 daily tweets about the subject.
+             Assings a sentiment score to a tweet based on the SentiWordNet Wordset. (contains > 115000 words & word relationships)</li>
+        </ul>
+
+        <h4>Improvements:</h4>
+        <ul>
+
+            <li>Due to limited time, the scraping of the Twitterdata was limited to 1000 Tweets daily. A higher amount of Tweets would increase the accuracy of our Sentiment Analysis.</li>
+
+            <li>The accuracy of the sentiment analysis at the moment is not high enough to generate sufficient correlation. A higher correlaction could definitelly be achived, besides with more twitter data, with an integration of correlation analysis between words und more twitter/market specific wordsets.</li>
         </ul>
     </div>
-    <div class="col-lg-4" align="right">
-        <img src="/img/logo.png" width="50%"/>
+    <div class="col-lg-3" align="right">
+        <img src="/img/logo.png" width="70%"/>
     </div>
 </div>
 

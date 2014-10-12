@@ -37,7 +37,7 @@ class DataService
             $sql = 'SELECT unix_timestamp(Date) as date , AVG( VALUE ) as value
                 FROM ' . $dbname . '
                 WHERE Date >= str_to_date(:from,"%Y-%m-%d") AND Date <= str_to_date(:to,"%Y-%m-%d")
-                GROUP BY YEAR( Date ) , MONTH( Date ), WEEK( Date )
+                GROUP BY YEAR( Date ) , MONTH( Date ), DAY( Date )
                 ORDER BY Date DESC';
         }
 
